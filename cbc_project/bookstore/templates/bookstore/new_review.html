@@ -1,0 +1,17 @@
+{% extends "bookstore/base.html" %}
+
+{% block title %}Add a review{% endblock %}
+
+{% block content %}
+    <h1>Add a review</h1>
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+
+        <input type="hidden" name="book_id" value="{{ book.id }}">
+
+        <button type="submit">Create Review</button>
+    </form>
+
+{% endblock %}

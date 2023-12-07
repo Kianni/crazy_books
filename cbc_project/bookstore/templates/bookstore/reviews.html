@@ -1,0 +1,26 @@
+{% extends "bookstore/base.html" %}
+
+{% block title %}Reviews{% endblock %}
+
+{% block content %}
+<h2>Welcome to Reviews Section!</h2>
+<ul>
+    {% for review in reviews %}
+        <li>
+            <h2>{{ review.book.name }}</h2>
+            <p>Review: {{ review.my_review }}</p>
+            <a href="{% url 'edit_review' review.id %}">Edit</a>  <!-- Link to edit review -->
+            <p>Rating: {{ review.stars }} stars</p>
+            {% if review.unfinished %}
+                <p>Status: Unfinished</p>
+            {% else %}
+                <p>Status: Finished</p>
+            {% endif %}
+            <p>Review added on: {{ review.date_added }}</p>
+            <p>Last modified: {{ review.date_modified }}</p>
+        </li>
+    {% empty %}
+        <li>No reviews available.</li>
+    {% endfor %}
+</ul>
+{% endblock %}

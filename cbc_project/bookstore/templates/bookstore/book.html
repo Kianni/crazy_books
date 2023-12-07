@@ -1,0 +1,23 @@
+{% extends "bookstore/base.html" %}
+
+{% block title %}Book details{% endblock %}
+
+{% block content %}
+    <h1>Book Details</h1>
+
+    {% if book %}
+        <h2>{{ book.name }}</h2>
+<h3>{{book.id}}</h3>
+        <p>Authors:
+            {% for author in book.authors %}
+                {{author.first_name}} {{author.last_name}}.
+            {% endfor %}
+        </p>
+        <p>Year Published: {{ book.year_published }}</p>
+        <p>Date Added: {{ book.date_added }}</p>
+        <p>Date Modified: {{ book.date_modified }}</p>
+    {% else %}
+        <p>Book not found.</p>
+    {% endif %}
+<a href="{% url 'new_review' book.id %}">Add a new review</a>
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends "bookstore/base.html" %}
+
+{% block title %}Books{% endblock %}
+
+{% block content %}
+    <h1>All Books</h1>
+
+    <ul>
+        {% for book in books %}
+            <li>
+                <strong>{{ book.name }}</strong> by
+                {% for author in book.authors %}
+                {{author.first_name}} {{author.last_name}}.
+                {% endfor %}
+                Published in {{ book.year_published }}
+            </li>
+        {% empty %}
+            <li>No books available.</li>
+        {% endfor %}
+    </ul>
+<a href="{% url 'new_book' %}">Add a new book</a>
+{% endblock %}
